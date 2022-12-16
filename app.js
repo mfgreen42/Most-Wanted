@@ -38,23 +38,6 @@ function app(people) {
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
             app(people);
             break;
-    //     case "test":
-    //     function searchByTraits()    
-    //     let singleOrMultiple = promptFor(
-    //         "Do you want to search by a single trait or multiple? Enter 'single' or 'multiple"
-    //     )
-    //         switch(singleOrMultiple) {
-    //             case "single":
-    //                 let singleTrait = SingleTrait(people);
-    //                 alert(singleTrait)
-    //                 break;
-    //             case "multiple":
-    //                 let multipleTraits = multipleTraits(people);
-    //                 alert(multipleTraits)
-    //                 break;
-    //         }
-    //     break;
-    // }
     // Calls the mainMenu() only AFTER we find the SINGLE PERSON
     mainMenu(searchResults, people);
 }
@@ -286,7 +269,7 @@ function searchByTraits(people){
 }
 
 function searchByTraits() {   
-    let oneOrMultiple = promptFor(
+    let oneOrMultiple = prompt(
         "Do you want to search by a one trait or multiple? Enter 'one' or 'multiple"
     )
         if(oneOrMultiple === 'one'){
@@ -303,21 +286,28 @@ function searchByTraits() {
 
 
 function singleTrait(){
-    let userInput = promptFor(
+    let userInput = prompt(
         "What trait would you like to search by? please choose one\ngender\nheight\nweight\neyeColor\noccupation"     
          )
     if (userInput === 'gender'){
         searchByGender();
+        
+    }if (userInput === 'height'){
+        searchByHeight();
+    }if (userInput === 'weight'){
+        searchByWeight();
+    }if (userInput === 'eyeColor'){
+        searchByEyeColor();
     }
     } 
     
 
 
-searchByGender(people) ;{
-    let genderInput = promptFor(
+function searchByGender() {
+    let genderInput = prompt(
         "What gender would you like to search by? Enter 'male' or 'female'"
     );
-    let gender = data.filter(function(el){
+    let searchGender = data.filter(function(el){
         if (el.gender === genderInput){
             return true;
 
@@ -326,9 +316,46 @@ searchByGender(people) ;{
         }
         
     })
-    let sortedGender = gender.map(function(el){
-        alert(sortedGender)
+    let oneTrait = searchGender.map(function(el){
+        
         return `${el.firstName} ${el.lastName}\n`;
     })
+    alert(oneTrait)
     
 }}
+
+function searchByHeight(){
+    let heightInput = prompt(
+        "What hight would you like to search for? "
+    )
+    let searchHeight = data.filter(function(el){
+        if (el.height === heightInput){
+            return true;
+        }else {
+            return false;
+        }
+
+    })
+    let oneTrait = searchHeight.map(function(el){
+        return `Name: ${el.firstName} ${el.lastName} Height: ${el.height} `
+    })
+    alert(oneTrait)
+}
+
+function searchByWeight(){
+    let weightInput = prompt(
+        "What wieght would you like to search for?"
+    )
+    let searchWeight = data.filter(function(el){
+        if (el.weight === weightInput){
+            return true;
+        }else {
+            return false;
+        }
+    })
+    let oneTrait = searchWeight.map(function(el){
+        return `Name: ${el.firstName} ${el.lastName} Weight: ${el.weight}`
+        
+    })
+    alert(oneTrait)
+}
