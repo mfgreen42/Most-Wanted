@@ -86,6 +86,26 @@ function mainMenu(person, people) {
             app(people);
             break;
         case "test":
+            let family = findSiblings(person[0],people);
+
+            function findSiblings(person, people){
+                let siblings = people.filter(function(el){
+                    if(el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                })
+                let siblingsName = siblings.map(function(el){
+                    return `Siblings: ${el.firstName} ${el.lastName}`
+                })
+                console.log(siblingsName)
+                return siblingsName
+            }
+            
+            
+             
+
             break;
         case "quit":
             // Stop application execution
@@ -194,10 +214,13 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 
-function findPersonFamily(person,people,spouseFullName) {
-    findSpouse(person, people, spouseFullName)
+function findPersonFamily(person,people) {
+    findSpouse(person, people)
+    findParents(person,people)
+    findSiblings(person,people)
 
-    let personFamily = spouseFullName
+
+    
     return personFamily
 }
  
@@ -209,12 +232,40 @@ function findSpouse(person, people) {
             return false;
         }
     })
-    console.log(spouse);
-    let spouseFirstName = spouse[0].firstName;
-    let spouseLastName = spouse[0].lastName;
-    let spouseFullName = spouseFirstName.concat(spouseLastName);
+    let spouseFullName = spouse.map(function(el){
+        return `currentSpouse: ${el.firstName} ${el.lastName}`
+    })
+    console.log(spouseFullName);
+    
     return spouseFullName;
 }
 
+function findParents(person, people){
+    let momAndDad = people.filter(function(el){
+        if(el.id === person.parents[0] || el.id === person.parents[1]){
+            return true;
+        }else{
+            return false;
+        }
+    })
+    let parentsName = momAndDad.map(function(el){
+        return `Parents: ${el.firstName} ${el.lastName}`
+    })
+    console.log(parentsName)
+    return parentsName
+}
 
-    
+function findSiblings(person, people){
+    let siblings = people.filter(function(el){
+        if(el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
+            return true;
+        }else{
+            return false;
+        }
+    })
+    let siblingsName = siblings.map(function(el){
+        return `Siblings: ${el.firstName} ${el.lastName}`
+    })
+    console.log(siblingsName)
+    return siblingsName
+}  
