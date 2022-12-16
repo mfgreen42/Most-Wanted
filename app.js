@@ -86,21 +86,21 @@ function mainMenu(person, people) {
             app(people);
             break;
         case "test":
-            let family = findSiblings(person[0],people);
+            let family = findPersonDescendants(person[0],people);
 
-            function findSiblings(person, people){
-                let siblings = people.filter(function(el){
-                    if(el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
+            function findPersonDescendants(person, people){
+                let descendants = people.filter(function(el){
+                    if(el.parents[0] === person.id || el.parents[1] === person.id){
                         return true;
                     }else{
                         return false;
                     }
                 })
-                let siblingsName = siblings.map(function(el){
-                    return `Siblings: ${el.firstName} ${el.lastName}`
+                let descendantsName = descendants.map(function(el){
+                    return `Descendants: ${el.firstName} ${el.lastName}\n`
                 })
-                console.log(siblingsName)
-                return siblingsName
+                console.log(descendantsName)
+                return descendantsName
             }
             
             
@@ -269,3 +269,18 @@ function findSiblings(person, people){
     console.log(siblingsName)
     return siblingsName
 }  
+
+function findPersonDescendants(person, people){
+    let descendants = people.filter(function(el){
+        if(el.parents[0] === person.id || el.parents[1] === person.id){
+            return true;
+        }else{
+            return false;
+        }
+    })
+    let personDescendants = descendants.map(function(el){
+        return `Descendants: ${el.firstName} ${el.lastName}\n`
+    })
+    console.log(personDescendants)
+    return personDescendants
+}
