@@ -215,12 +215,12 @@ function chars(input) {
 
 
 function findPersonFamily(person,people) {
-    findSpouse(person, people)
-    findParents(person,people)
-    findSiblings(person,people)
+    let personFamily = findSpouse(person, people)
+    personFamily += findParents(person,people)
+    personFamily +=findSiblings(person,people)
 
+     
 
-    
     return personFamily
 }
  
@@ -233,7 +233,7 @@ function findSpouse(person, people) {
         }
     })
     let spouseFullName = spouse.map(function(el){
-        return `currentSpouse: ${el.firstName} ${el.lastName}`
+        return `currentSpouse: ${el.firstName} ${el.lastName}\n`
     })
     console.log(spouseFullName);
     
@@ -249,7 +249,7 @@ function findParents(person, people){
         }
     })
     let parentsName = momAndDad.map(function(el){
-        return `Parents: ${el.firstName} ${el.lastName}`
+        return `Parents: ${el.firstName} ${el.lastName}\n`
     })
     console.log(parentsName)
     return parentsName
@@ -257,14 +257,14 @@ function findParents(person, people){
 
 function findSiblings(person, people){
     let siblings = people.filter(function(el){
-        if(el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
+        if(el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1] && el.id != person.id){
             return true;
         }else{
             return false;
         }
     })
     let siblingsName = siblings.map(function(el){
-        return `Siblings: ${el.firstName} ${el.lastName}`
+        return `Siblings: ${el.firstName} ${el.lastName}\n`
     })
     console.log(siblingsName)
     return siblingsName
