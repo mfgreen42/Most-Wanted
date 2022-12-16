@@ -85,6 +85,8 @@ function mainMenu(person, people) {
             // Restart app() from the very beginning
             app(people);
             break;
+        case "test":
+            break;
         case "quit":
             // Stop application execution
             return;
@@ -147,7 +149,7 @@ function displayPerson(person) {
     personInfo += `Eye Color: ${person.eyeColor}\n`;
     personInfo += `Occupation: ${person.occupation}\n`;
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
-    alert(personInfo);
+    return personInfo;
 }
 // End of displayPerson()
 
@@ -190,3 +192,29 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+
+function findPersonFamily(person,people,spouseFullName) {
+    findSpouse(person, people, spouseFullName)
+
+    let personFamily = spouseFullName
+    return personFamily
+}
+ 
+function findSpouse(person, people) {
+    let spouse = people.filter(function(el){
+        if (el.id.toString().includes(person.currentSpouse)){
+            return true;
+        }else {
+            return false;
+        }
+    })
+    console.log(spouse);
+    let spouseFirstName = spouse[0].firstName;
+    let spouseLastName = spouse[0].lastName;
+    let spouseFullName = spouseFirstName.concat(spouseLastName);
+    return spouseFullName;
+}
+
+
+    
