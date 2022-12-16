@@ -31,13 +31,30 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
+            
             searchResults = searchByTraits(people);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
             app(people);
             break;
-    }
+    //     case "test":
+    //     function searchByTraits()    
+    //     let singleOrMultiple = promptFor(
+    //         "Do you want to search by a single trait or multiple? Enter 'single' or 'multiple"
+    //     )
+    //         switch(singleOrMultiple) {
+    //             case "single":
+    //                 let singleTrait = SingleTrait(people);
+    //                 alert(singleTrait)
+    //                 break;
+    //             case "multiple":
+    //                 let multipleTraits = multipleTraits(people);
+    //                 alert(multipleTraits)
+    //                 break;
+    //         }
+    //     break;
+    // }
     // Calls the mainMenu() only AFTER we find the SINGLE PERSON
     mainMenu(searchResults, people);
 }
@@ -86,26 +103,6 @@ function mainMenu(person, people) {
             app(people);
             break;
         case "test":
-            let family = findPersonDescendants(person[0],people);
-
-            function findPersonDescendants(person, people){
-                let descendants = people.filter(function(el){
-                    if(el.parents[0] === person.id || el.parents[1] === person.id){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                })
-                let descendantsName = descendants.map(function(el){
-                    return `Descendants: ${el.firstName} ${el.lastName}\n`
-                })
-                console.log(descendantsName)
-                return descendantsName
-            }
-            
-            
-             
-
             break;
         case "quit":
             // Stop application execution
@@ -218,11 +215,9 @@ function findPersonFamily(person,people) {
     let personFamily = findSpouse(person, people)
     personFamily += findParents(person,people)
     personFamily +=findSiblings(person,people)
-
-     
-
     return personFamily
 }
+
  
 function findSpouse(person, people) {
     let spouse = people.filter(function(el){
@@ -251,13 +246,13 @@ function findParents(person, people){
     let parentsName = momAndDad.map(function(el){
         return `Parents: ${el.firstName} ${el.lastName}\n`
     })
-    console.log(parentsName)
-    return parentsName
+    console.log(parentsName);
+    return parentsName;
 }
 
 function findSiblings(person, people){
     let siblings = people.filter(function(el){
-        if(el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1] && el.id != person.id){
+        if(el.parents[0] === person.parents[0] || el.parents[1] === person.parents[1]){
             return true;
         }else{
             return false;
@@ -266,8 +261,8 @@ function findSiblings(person, people){
     let siblingsName = siblings.map(function(el){
         return `Siblings: ${el.firstName} ${el.lastName}\n`
     })
-    console.log(siblingsName)
-    return siblingsName
+    console.log(siblingsName);
+    return siblingsName;
 }  
 
 function findPersonDescendants(person, people){
@@ -281,6 +276,59 @@ function findPersonDescendants(person, people){
     let personDescendants = descendants.map(function(el){
         return `Descendants: ${el.firstName} ${el.lastName}\n`
     })
-    console.log(personDescendants)
-    return personDescendants
+    console.log(personDescendants);
+    return personDescendants;
 }
+
+function searchByTraits(people){
+
+
+}
+
+function searchByTraits() {   
+    let oneOrMultiple = promptFor(
+        "Do you want to search by a one trait or multiple? Enter 'one' or 'multiple"
+    )
+        if(oneOrMultiple === 'one'){
+                let oneTrait = singleTrait(people);
+                alert(oneTrait)}
+                
+        if(oneOrMultiple === 'multiple'){
+                let multiple = multipleTraits(people);
+                alert(multiple)}
+                
+            }
+        
+
+
+
+function singleTrait(){
+    let userInput = promptFor(
+        "What trait would you like to search by? please choose one\ngender\nheight\nweight\neyeColor\noccupation"     
+         )
+    if (userInput === 'gender'){
+        searchByGender();
+    }
+    } 
+    
+
+
+searchByGender(people) ;{
+    let genderInput = promptFor(
+        "What gender would you like to search by? Enter 'male' or 'female'"
+    );
+    let gender = data.filter(function(el){
+        if (el.gender === genderInput){
+            return true;
+
+        }else {
+            return false;
+        }
+        
+    })
+    let sortedGender = gender.map(function(el){
+        alert(sortedGender)
+        return `${el.firstName} ${el.lastName}\n`;
+    })
+    
+}}
