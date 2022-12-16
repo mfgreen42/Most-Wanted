@@ -298,6 +298,10 @@ function singleTrait(){
         searchByWeight();
     }if (userInput === 'eyeColor'){
         searchByEyeColor();
+    }if (userInput === 'occupation'){
+        searchByOccupation();
+    }else {
+        singleTrait()
     }
     } 
     
@@ -356,6 +360,41 @@ function searchByWeight(){
     let oneTrait = searchWeight.map(function(el){
         return `Name: ${el.firstName} ${el.lastName} Weight: ${el.weight}`
         
+    })
+    alert(oneTrait)
+}
+
+function searchByEyeColor(){
+    
+    let eyeColorInput = prompt(
+        "What color eyes would you like to search for?"
+    )
+    let searchByEyeColor = data.filter(function(el){
+        if(el.eyeColor === eyeColorInput){
+            return true;
+        }else {
+            return false;
+        }
+    })
+    let oneTrait = searchByEyeColor.map(function(el){
+        return `Name: ${el.firstName} ${el.lastName} Eye Color: ${el.eyeColor}`
+    })
+    alert(oneTrait)
+    }
+
+function searchByOccupation(){
+    let occupationInput = prompt(
+        "What occupation would you like to search by? \nprogrammer \nassistant \nlandscaper \nnurse \nstudent \narchitect \ndoctor \npolitician"
+    )
+    let occupationSearch = data.filter(function(el){
+        if (el.occupation === occupationInput){
+            return true;
+        }else {
+            return false;
+        }
+    })
+    let oneTrait = occupationSearch.map(function(el){
+        return `Name: ${el.firstName} ${el.lastName} Occupation: ${el.occupation}`
     })
     alert(oneTrait)
 }
