@@ -274,7 +274,7 @@ function searchByTraits() {
     )
         if(oneOrMultiple === 'one'){
                 let oneTrait = singleTrait(people);
-                alert(oneTrait)}
+                }
                 
         if(oneOrMultiple === 'multiple'){
                 let multiple = multipleTraits(people);
@@ -282,7 +282,14 @@ function searchByTraits() {
                 
             }
         
+function multipleTraits(people){
+    let numberOfTraits = parseInt(prompt(
+        "How many traits would you like to search by? please choose a number from 1-5"
+    ))
+      for (let i = numberOfTraits; i=0; i--){
 
+      }
+}
 
 
 function singleTrait(){
@@ -290,8 +297,7 @@ function singleTrait(){
         "What trait would you like to search by? please choose one\ngender\nheight\nweight\neyeColor\noccupation"     
          )
     if (userInput === 'gender'){
-        searchByGender();
-        
+        searchByGender();  
     }if (userInput === 'height'){
         searchByHeight();
     }if (userInput === 'weight'){
@@ -301,7 +307,8 @@ function singleTrait(){
     }if (userInput === 'occupation'){
         searchByOccupation();
     }else {
-        singleTrait()
+        alert("I'm sorry, I didn't recognize that option")
+        
     }
     } 
     
@@ -330,7 +337,7 @@ function searchByGender() {
 
 function searchByHeight(){
     let heightInput = prompt(
-        "What hight would you like to search for? "
+        "What height would you like to search for? "
     )
     let searchHeight = data.filter(function(el){
         if (el.height === heightInput){
@@ -341,7 +348,7 @@ function searchByHeight(){
 
     })
     let oneTrait = searchHeight.map(function(el){
-        return `Name: ${el.firstName} ${el.lastName} Height: ${el.height} `
+        return `Name: ${el.firstName} ${el.lastName} Height: ${el.height} \n`
     })
     alert(oneTrait)
 }
@@ -358,7 +365,7 @@ function searchByWeight(){
         }
     })
     let oneTrait = searchWeight.map(function(el){
-        return `Name: ${el.firstName} ${el.lastName} Weight: ${el.weight}`
+        return `Name: ${el.firstName} ${el.lastName} Weight: ${el.weight}\n`
         
     })
     alert(oneTrait)
@@ -367,7 +374,7 @@ function searchByWeight(){
 function searchByEyeColor(){
     
     let eyeColorInput = prompt(
-        "What color eyes would you like to search for?"
+        "What eye color would you like to search for?"
     )
     let searchByEyeColor = data.filter(function(el){
         if(el.eyeColor === eyeColorInput){
@@ -377,7 +384,7 @@ function searchByEyeColor(){
         }
     })
     let oneTrait = searchByEyeColor.map(function(el){
-        return `Name: ${el.firstName} ${el.lastName} Eye Color: ${el.eyeColor}`
+        return `Name: ${el.firstName} ${el.lastName} Eye Color: ${el.eyeColor}\n`
     })
     alert(oneTrait)
     }
@@ -394,7 +401,8 @@ function searchByOccupation(){
         }
     })
     let oneTrait = occupationSearch.map(function(el){
-        return `Name: ${el.firstName} ${el.lastName} Occupation: ${el.occupation}`
+        return `Name: ${el.firstName} ${el.lastName} Occupation: ${el.occupation}\n`
     })
     alert(oneTrait)
+    
 }
